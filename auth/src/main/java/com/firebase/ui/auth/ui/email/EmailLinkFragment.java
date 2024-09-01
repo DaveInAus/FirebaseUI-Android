@@ -123,7 +123,7 @@ public class EmailLinkFragment extends InvisibleFragmentBase {
                 R.string.fui_progress_dialog_sending) {
             @Override
             protected void onSuccess(@NonNull String email) {
-                Log.w(TAG, "Email for email link sign in sent successfully.");
+                Log.w(TAG, "Email (" +  email + ") for email link sign in sent successfully.");
                 doAfterTimeout(() -> mTopLevelView.setVisibility(View.VISIBLE));
                 mEmailSent = true;
             }
