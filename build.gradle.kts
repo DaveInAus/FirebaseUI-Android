@@ -38,5 +38,8 @@ allprojects {
             exclude("**/gen/**")
             classpath = files()
         }
+        //DisbaleJavadoc
+        tasks.withType(Javadoc).all { enabled = false }
+
     }
 }
