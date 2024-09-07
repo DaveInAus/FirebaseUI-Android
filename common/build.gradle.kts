@@ -41,6 +41,13 @@ android {
             consumerProguardFiles("proguard-rules.pro")
         }
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -48,4 +55,18 @@ dependencies {
     api(Config.Libs.Androidx.lifecycleViewModel)
     implementation(Config.Libs.Androidx.annotations)
     annotationProcessor(Config.Libs.Androidx.lifecycleCompiler)
+}
+
+publishing {
+    publications {
+        create("release", MavenPublication::class) {
+            groupId = "com.github.DaveInAus"
+            artifactId = "FirebaseUI-Android"
+            version = "1.0.7"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }
