@@ -18,10 +18,6 @@ buildscript {
 
 plugins {
     id("com.github.ben-manes.versions") version "0.20.0"
-
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("maven-publish")
 }
 
 allprojects {
