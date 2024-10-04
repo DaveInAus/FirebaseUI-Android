@@ -124,14 +124,18 @@ public class EmailLinkFragment extends InvisibleFragmentBase {
             @Override
             protected void onSuccess(@NonNull String email) {
 
-                final String FIREBASE_USER_EMAIL = "firebaseui_user_email";
                 //Add the email to SharedPreferences so we can retrieve later
+                final String FIREBASE_USER_EMAIL = "firebaseui_user_email";
+                final String SHARED_PREFS_NAME = "FirebaseUI";
+
                 Log.w(TAG, "Email (" +  email + ") for email link sign in sent successfully.");
                 Context context = getContext();
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+                SharedPreferences sharedPref = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(FIREBASE_USER_EMAIL, email);
                 editor.apply();
+                //end to SharedPreferences
                 
                 doAfterTimeout(() -> mTopLevelView.setVisibility(View.VISIBLE));
                 mEmailSent = true;
